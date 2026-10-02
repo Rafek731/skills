@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writer-Reviewer Protocol"
+  short_description: "Write, blind-review, and revise until it passes"
+policy:
+  allow_implicit_invocation: false
