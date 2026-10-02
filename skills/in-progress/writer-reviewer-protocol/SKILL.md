@@ -52,22 +52,24 @@ If your harness doesn't let subagents spawn subagents, play the suborchestrator 
 >
 > **Threshold: the work passes when every reviewer scores 9 or higher.** This number is for you only. Never pass it, or any hint about it, to the writer or reviewers.
 >
+> Before round 1, fix the **work path**: one file such as `<dir>/work.md` (pick the extension the task implies), or a folder `<dir>/work/` if the work spans several files. The writer always writes there and nowhere else, so you never have to guess which file is the latest.
+>
 > Each round:
 >
-> 1. **Write.** Round 1: spawn the writer with the writer brief. Later rounds: send the same writer the revision brief (resume it if your harness supports messaging an agent; otherwise spawn a fresh writer pointed at its previous output and the feedback).
-> 2. **Snapshot.** Copy the work to `<dir>/draft-r<round>` before review, so a revision that makes things worse never destroys a better version.
-> 3. **Review.** Spawn `<n>` fresh reviewers in parallel with the reviewer brief. They get no earlier scores or reviews, so each judges the work with fresh eyes. Each saves its review to `<dir>/review-r<round>-<i>.md` and replies with it, first line `SCORE: <n>`.
+> 1. **Write.** Round 1: spawn the writer with the writer brief. Later rounds: send the same writer the revision brief (resume it if your harness supports messaging an agent; otherwise spawn a fresh writer pointed at the work path and the feedback).
+> 2. **Snapshot.** Copy the work path to `<dir>/draft-r<round>` (same extension, or a folder), after the writer replies and before review. Confirm the copy differs from the previous round's snapshot; if it is identical, the writer saved somewhere else, so ask it to fix that before going on.
+> 3. **Review.** Spawn `<n>` fresh reviewers in parallel with the reviewer brief, pointed at the **snapshot**, not the work path. Scores then belong to a draft that can't change underneath them. They get no earlier scores or reviews, so each judges the work with fresh eyes. Each saves its review to `<dir>/review-r<round>-<i>.md` and replies with it, first line `SCORE: <n>`.
 > 4. **Decide.** If every score is 9 or above, stop. Otherwise, if the round cap is reached, stop. Otherwise, merge all reviewers' feedback (deduplicated, but never softened or dropped) and start the next round. Pass the feedback to the writer without scores and without telling it how close it is.
 >
 > When you stop, report: the scores per round, the number of rounds, whether the threshold was met, and the path to the **best** draft (highest lowest-reviewer score; the latest on a tie), which is not always the last. Include any concerns its reviewers raised that remain unaddressed.
 
 ### Writer brief
 
-> Accomplish this task: `<task>`. Save your work in `<dir>` and reply with the path and a one-paragraph summary. It will be reviewed independently; you may receive feedback to address.
+> Accomplish this task: `<task>`. Save your work to exactly `<work path>`, nowhere else, and reply with a one-paragraph summary. It will be reviewed independently; you may receive feedback to address.
 
 ### Revision brief
 
-> Reviewers left this feedback on your work: `<merged feedback>`. Revise the work in place.
+> Reviewers left this feedback on your work: `<merged feedback>`. Revise the work in place at `<work path>`.
 >
 > The task's own requirements (`<task>`) outrank any suggestion: if a suggestion would break one (a length limit, a required count, a format), or two suggestions contradict each other, follow the task and say which suggestion you declined and why. Fix what the feedback identifies without rewriting what nobody criticised. Swinging from one extreme to the other to satisfy the last review is the usual way revisions get worse. Before replying, re-check every hard requirement yourself (count, run, or trace it), since edits often break something that used to be right.
 
