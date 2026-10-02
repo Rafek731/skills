@@ -226,6 +226,7 @@ General workflow tools, not code-specific.
 - **[teach](./skills/productivity/teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
 - **[to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the subject.
 - **[wait-what](./skills/productivity/wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `GLOSSARY.md` vocabulary.
+- **[writer-reviewer-protocol](./skills/productivity/writer-reviewer-protocol/SKILL.md)**: Run a task through a writer-reviewer loop: a low-effort suborchestrator has a writer produce the work and blind reviewers score it 1-10 until it clears a hidden bar the reviewers never see.
 
 **Model-invoked**
 
